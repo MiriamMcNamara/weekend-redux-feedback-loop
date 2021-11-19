@@ -21,7 +21,7 @@ function Feeling( props ){
             console.log( 'no input') }
         //else { send data to the store and link to next page}
         else { console.log( 'you have a number' )};
-        //dispatch( { type: 'ADD_FEEDBACK',  payload: { feelingInput } } )
+        dispatch( { type: 'ADD_FEEDBACK',  payload: { feelingInput } } )
     }
 
     const [open, setOpen] = useState(false);
@@ -42,9 +42,11 @@ function Feeling( props ){
             <Grid item xs={10} >
                 <Card sx={{ maxWidth: 400 }}>
                     <Typography variant="h4" align="center" color="secondary">1 of 4 Pages</Typography>
-                    <Typography align="center">How are you feeling today?</Typography>
+                    <br />
+                    <Typography align="center" variant="h5">How are you feeling today?</Typography>
+                    <br />
                     <TextField type="number" inputProps={{ min: "1", max: "5" }} onChange={(event ) =>handleInput ( event )}></TextField>
-                    <Button variant="outlined" size="large" color="secondary" onClick={handleCloseAgree}>
+                    <Button variant="outlined" size="large" color="secondary" style={{fontSize: 18}} onClick={handleCloseAgree}>
                         NEXT</Button>
 
       <Dialog
