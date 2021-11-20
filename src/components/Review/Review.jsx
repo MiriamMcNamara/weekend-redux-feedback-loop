@@ -8,8 +8,6 @@ function Review( props ){
     const feedback = useSelector(store => store.feedback);
 
     return(
-        <div>
-            <p> { JSON.stringify( feedback ) } </p>
             <Box sx={{boxShadow: 3}} m={2} pt={1} >
             <Grid container>
             <Grid item xs={1}>
@@ -18,13 +16,13 @@ function Review( props ){
                 <Card sx={{ maxWidth: 400 }}>
                     <Typography variant="h4" align="center" color="secondary">Review Your Feedback</Typography>
                     <br />
-                    <Typography align="center" variant="h5">Feelings: </Typography>
+                    <Typography align="center" variant="h5">Feelings: {feedback.feelings} </Typography>
                     <br />
-                    <Typography align="center" variant="h5">Understanding: </Typography>
+                    <Typography align="center" variant="h5">Understanding: {feedback.understanding} </Typography>
                     <br />
-                    <Typography align="center" variant="h5">Support: </Typography>
+                    <Typography align="center" variant="h5">Support: {feedback.support} </Typography>
                     <br />
-                    <Typography align="center" variant="h5">Comments: </Typography>
+                    <Typography align="center" variant="h5">Comments: {feedback.comments} </Typography>
                     <br />
                     <br />
                     <Button variant="outlined" size="large" color="secondary" style={{fontSize: 18}} >
@@ -35,9 +33,6 @@ function Review( props ){
             </Grid>
             </Grid>
         </Box>
-       
-        </div>
-
     )
 }
 

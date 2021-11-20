@@ -21,7 +21,7 @@ function Feeling( props ){
             console.log( 'no input') }
         //else { send data to the store and link to next page}
         else { console.log( 'you have a number' );
-        dispatch( { type: 'ADD_FEEDBACK',  payload: { feelingInput } } ) }
+        dispatch( { type: 'ADD_FEELING_FEEDBACK',  payload: feelingInput } ) }
     }
 
     const [open, setOpen] = useState(false);

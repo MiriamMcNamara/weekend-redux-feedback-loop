@@ -21,7 +21,7 @@ function Understanding( props ){
             console.log( 'no input') }
         //else { send data to the store and link to next page}
         else { console.log( 'you have a number' );
-        dispatch( { type: 'ADD_FEEDBACK',  payload: { understandingInput } } ) }
+        dispatch( { type: 'ADD_UNDERSTANDING_FEEDBACK',  payload: understandingInput } ) }
     }
 
     const [open, setOpen] = useState(false);

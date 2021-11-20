@@ -22,7 +22,7 @@ function Support( props ){
             console.log( 'no input') }
         //else { send data to the store and link to next page}
         else { console.log( 'you have a number' );
-        dispatch( { type: 'ADD_FEEDBACK',  payload: { supportInput } } ) }
+        dispatch( { type: 'ADD_SUPPORT_FEEDBACK',  payload: supportInput } ) }
     }
 
     const [open, setOpen] = useState(false);

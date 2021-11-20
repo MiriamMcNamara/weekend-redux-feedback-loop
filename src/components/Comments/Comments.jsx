@@ -17,7 +17,7 @@ function Comments( props ){
     const handleCloseAgree = () => { //button click handler
         console.log('in handleCloseAgree' );
         //else { send data to the store and link to next page}
-        dispatch( { type: 'ADD_FEEDBACK',  payload: { commentInput } } );
+        dispatch( { type: 'ADD_COMMENTS_FEEDBACK',  payload: commentInput } );
     }
 
     return(
