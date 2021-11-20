@@ -11,7 +11,7 @@ import logger from 'redux-logger';
 //reducers go here
 const feedback = ( state={}, action)=>{
     if( action.type === 'ADD_FEELING_FEEDBACK'){
-      return{...state, feelings: action.payload};
+      return{...state, feeling: action.payload};
     }
     if( action.type === 'ADD_UNDERSTANDING_FEEDBACK'){
         return{...state, understanding: action.payload};
@@ -21,6 +21,9 @@ const feedback = ( state={}, action)=>{
       }
       if( action.type === 'ADD_COMMENTS_FEEDBACK'){
         return{...state, comments: action.payload};
+      }
+      if( action.type === 'EMPTY'){
+        return{};
       }
     return state;
   }
