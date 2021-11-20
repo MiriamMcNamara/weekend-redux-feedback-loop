@@ -3,6 +3,11 @@ import axios from 'axios';
 import './App.css';
 import Feeling from '../Feeling/Feeling';
 import { Box, Container, Typography, Grid, Paper } from '@material-ui/core';
+import Understanding from '../Understanding/Understanding';
+import Support from '../Support/Support';
+import Comments from '../Comments/Comments';
+import Review from '../Review/Review';
+import ThankYou from '../ThankYou/ThankYou';
 
 function App() {
 
@@ -29,6 +34,11 @@ function App() {
       </Grid>
 
       <Feeling />
+      <Understanding />
+      <Support />
+      <Comments />
+      <Review />
+      <ThankYou />
       </Container>
   );
 }

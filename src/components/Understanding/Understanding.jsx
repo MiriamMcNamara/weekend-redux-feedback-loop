@@ -3,25 +3,25 @@ import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } 
 import { useState } from "react";
 import {useDispatch, useSelector} from 'react-redux';
 
-function Feeling( props ){
+function Understanding( props ){
     // const[ name, setName ]=useState( null );
     const dispatch = useDispatch();
 
-    const[ feelingInput, setFeelingInput ]=useState( 0 );
+    const[ understandingInput, setUnderstandingInput ]=useState( 0 );
 
     const handleInput = ()=>{ //input capture
         console.log( 'in handleInput:', event.target.value);
-        setFeelingInput( event.target.value );
+        setUnderstandingInput( event.target.value );
     }
 
     const handleCloseAgree = () => { //button click handler
         console.log('in handleCloseAgree' );
-        if ( feelingInput === 0 ){ 
+        if ( understandingInput === 0 ){ 
             handleClickOpen();
             console.log( 'no input') }
         //else { send data to the store and link to next page}
         else { console.log( 'you have a number' );
-        dispatch( { type: 'ADD_FEEDBACK',  payload: { feelingInput } } ) }
+        dispatch( { type: 'ADD_FEEDBACK',  payload: { understandingInput } } ) }
     }
 
     const [open, setOpen] = useState(false);
@@ -40,10 +40,10 @@ function Feeling( props ){
             <Grid item xs={1}>
             </Grid>
             <Grid item xs={10} >
-                <Card >
-                    <Typography variant="h4" align="center" color="secondary">1 of 4 Pages</Typography>
+                <Card sx={{ maxWidth: 400 }}>
+                    <Typography variant="h4" align="center" color="secondary">2 of 4 Pages</Typography>
                     <br />
-                    <Typography align="center" variant="h5">How are you feeling today?</Typography>
+                    <Typography align="center" variant="h5">How well are you understanding the content?</Typography>
                     <br />
                     <TextField type="number" inputProps={{ min: "1", max: "5" }} onChange={(event ) =>handleInput ( event )}></TextField>
                     <br />
@@ -80,4 +80,4 @@ function Feeling( props ){
     )
 }
 
-export default Feeling;
+export default Understanding;
