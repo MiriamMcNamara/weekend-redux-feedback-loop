@@ -13,19 +13,17 @@ function Feeling( props ){
     const handleInput = ()=>{ //input capture
         console.log( 'in handleInput:', event.target.value);
         setFeelingInput( event.target.value );
+        if(feelingInput != 0 ){
+        setLink( true )};
     }
 
     const handleCloseAgree = () => { //button click handler
         console.log('in handleCloseAgree' );
-        if ( feelingInput === 0 ){ 
-            handleClickOpen();
-            console.log( 'no input') }
-        //else { send data to the store and link to next page}
-        else { console.log( 'you have a number' );
         dispatch( { type: 'ADD_FEELING_FEEDBACK',  payload: feelingInput } ) }
-    }
 
     const [open, setOpen] = useState(false);
+
+    const [link, setLink] = useState(false);
 
     const handleClickOpen = () => {
       setOpen(true);
@@ -52,8 +50,12 @@ function Feeling( props ){
                     <TextField type="number" inputProps={{ min: "1", max: "5" }} onChange={(event ) =>handleInput ( event )}></TextField>
                     <br />
                     <br />
+                    { link ?
                     <Button variant="outlined" size="large" color="secondary" style={{fontSize: 18}} onClick={handleCloseAgree}>
-                    <Link to="/understanding">NEXT</Link></Button>
+                    <Link to="/understanding">NEXT</Link></Button>:
+                    <Button variant="outlined" size="large" color="secondary" style={{fontSize: 18}} onClick={handleClickOpen}>
+                    NEXT</Button>
+                    }
                     </CardActions>
 
       <Dialog

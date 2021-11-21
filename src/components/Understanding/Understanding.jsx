@@ -13,19 +13,17 @@ function Understanding( props ){
     const handleInput = ()=>{ //input capture
         console.log( 'in handleInput:', event.target.value);
         setUnderstandingInput( event.target.value );
+        if(understandingInput != 0 ){
+          setLink( true )};
     }
 
     const handleCloseAgree = () => { //button click handler
         console.log('in handleCloseAgree' );
-        if ( understandingInput === 0 ){ 
-            handleClickOpen();
-            console.log( 'no input') }
-        //else { send data to the store and link to next page}
-        else { console.log( 'you have a number' );
         dispatch( { type: 'ADD_UNDERSTANDING_FEEDBACK',  payload: understandingInput } ) }
-    }
 
     const [open, setOpen] = useState(false);
+
+    const [link, setLink] = useState(false);
 
     const handleClickOpen = () => {
       setOpen(true);
@@ -52,8 +50,12 @@ function Understanding( props ){
                     <TextField type="number" inputProps={{ min: "1", max: "5" }} onChange={(event ) =>handleInput ( event )}></TextField>
                     <br />
                     <br />
+                    { link ?
                     <Button variant="outlined" size="large" color="secondary" style={{fontSize: 18}} onClick={handleCloseAgree}>
-                      <Link to="/support">NEXT</Link></Button>
+                    <Link to="/support">NEXT</Link></Button>:
+                    <Button variant="outlined" size="large" color="secondary" style={{fontSize: 18}} onClick={handleClickOpen}>
+                    NEXT</Button>
+                    }
                     </CardActions>
 
       <Dialog

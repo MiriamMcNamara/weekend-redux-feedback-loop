@@ -14,19 +14,17 @@ function Support( props ){
     const handleInput = ()=>{ //input capture
         console.log( 'in handleInput:', event.target.value);
         setSupportInput( event.target.value );
+        if(supportInput != 0 ){
+          setLink( true )};
     }
 
     const handleCloseAgree = () => { //button click handler
         console.log('in handleCloseAgree' );
-        if ( supportInput === 0 ){ 
-            handleClickOpen();
-            console.log( 'no input') }
-        //else { send data to the store and link to next page}
-        else { console.log( 'you have a number' );
         dispatch( { type: 'ADD_SUPPORT_FEEDBACK',  payload: supportInput } ) }
-    }
 
     const [open, setOpen] = useState(false);
+
+    const [link, setLink] = useState(false);
 
     const handleClickOpen = () => {
       setOpen(true);
@@ -53,8 +51,12 @@ function Support( props ){
                 <TextField type="number" inputProps={{ min: "1", max: "5" }} onChange={(event ) =>handleInput ( event )}></TextField>
                 <br />
                 <br />
-                <Button variant="outlined" size="large" color="secondary" style={{fontSize: 18}} onClick={handleCloseAgree}>
-                <Link to="/comments">NEXT</Link></Button>
+                { link ?
+                    <Button variant="outlined" size="large" color="secondary" style={{fontSize: 18}} onClick={handleCloseAgree}>
+                    <Link to="/comments">NEXT</Link></Button>:
+                    <Button variant="outlined" size="large" color="secondary" style={{fontSize: 18}} onClick={handleClickOpen}>
+                    NEXT</Button>
+                    }
                 </CardActions>
 
   <Dialog
