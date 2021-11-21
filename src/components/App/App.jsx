@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Feeling from '../Feeling/Feeling';
 import { Box, Container, Typography, Grid, Paper } from '@material-ui/core';
 import Understanding from '../Understanding/Understanding';
@@ -33,12 +34,19 @@ function App() {
         </Grid>
       </Grid>
 
-      <Feeling />
-      <Understanding />
-      <Support />
-      <Comments />
-      <Review />
-      <ThankYou />
+      <BrowserRouter>
+        <Routes>
+             {/* reminder that the Admin page should not be linked, only reachable by visiting /Admin in URL  */}
+            <Route path='/' element={<Feeling />}></Route>
+            <Route path='/understanding' element={<Understanding />}></Route>
+            <Route path='/support' element={<Support />}></Route>
+            <Route path='/comments' element ={<Comments />}></Route>
+            <Route path='/review' element ={<Review />}></Route>
+            <Route path='/thankyou' element ={<ThankYou />}></Route>
+
+        </Routes>
+      </BrowserRouter>
+
       </Container>
   );
 }

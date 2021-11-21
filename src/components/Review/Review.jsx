@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { Grid, Typography, Box, Card, Button } from "@material-ui/core";
+import { Grid, Typography, Box, Card, CardContent, CardActions, Button } from "@material-ui/core";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 
 function Review( props ){
@@ -11,8 +12,6 @@ function Review( props ){
 
     const handlePost = () =>{
         console.log( 'in handlePost' );
-        //can I send 'feedback' (the variable above created for store)
-        //directly to the database with my POST?
         axios.post( `/feedback`, feedback ).then( (response)=>{
             //send a dispatch to empty out the store
             dispatch({ type: 'EMPTY' });
@@ -29,6 +28,7 @@ function Review( props ){
             </Grid>
             <Grid item xs={10} >
                 <Card sx={{ maxWidth: 400 }}>
+                    <CardContent>
                     <Typography variant="h4" align="center" color="secondary">Review Your Feedback</Typography>
                     <br />
                     <Typography align="center" variant="h5">Feelings: {feedback.feeling} </Typography>
@@ -40,8 +40,11 @@ function Review( props ){
                     <Typography align="center" variant="h5">Comments: {feedback.comments} </Typography>
                     <br />
                     <br />
+                    </CardContent>
+                    <CardActions style={{justifyContent: 'center'}}>
                     <Button variant="outlined" size="large" color="secondary" style={{fontSize: 18}} onClick={handlePost}>
-                        SUBMIT</Button>
+                    <Link to="/thankyou">SUBMIT</Link></Button>
+                    </CardActions>
                 </Card>
             </Grid>
             <Grid item xs={1}>
