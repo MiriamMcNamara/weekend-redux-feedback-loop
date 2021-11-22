@@ -13,8 +13,11 @@ function Understanding( props ){
     const handleInput = ()=>{ //input capture
         console.log( 'in handleInput:', event.target.value);
         setUnderstandingInput( event.target.value );
-        if(understandingInput != 0 ){
-          setLink( true )};
+        if( event.target.value > 0 && event.target.value < 6 ){
+          setLink( true )}
+          else {
+            setLink( false );
+          }
     }
 
     const handleCloseAgree = () => { //button click handler

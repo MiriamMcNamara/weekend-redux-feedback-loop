@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Grid, Typography, Box, Card, Paper, CardContent, CardActions, Button } from "@material-ui/core";
+import { Dialog, DialogActions, DialogContent, DialogContentText } from "@material-ui/core";
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@material-ui/core";
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -11,6 +12,21 @@ function Admin( props ){
     // const[ name, setName ]=useState( null );
 
      const[ feedback, setFeedback ]=useState( [] );
+
+     const [open, setOpen] = useState(false);
+
+     const [ rowId, setRowId] = useState( null );
+ 
+     const handleClickOpen = (id) => {
+        setRowId(id);
+       setOpen(true);
+       //this is the function that opens the confirmation dialogue on button click
+     };
+   
+     const handleCloseDisagree = () => {
+       setOpen(false);
+       //this closes it again if the user clicks "disagree"
+     };
 
     useEffect(()=>{ 
         getFeedback();
@@ -26,10 +42,11 @@ function Admin( props ){
         }) 
       } 
 
-      const deleteFeedback = (id) => {
-          console.log( 'in deleteFeedback', id );
-          axios.delete(`/feedback/${id}`).then ( ( response )=>{
+      const deleteFeedback = () => {
+          console.log( 'in deleteFeedback', rowId );
+          axios.delete(`/feedback/${rowId}`).then ( ( response )=>{
             getFeedback();
+            setOpen(false);
           }).catch( ( err )=>{
             console.log( err );
           alert( 'problem!' );
@@ -85,7 +102,7 @@ function Admin( props ){
               <TableCell align="right">{row.support}</TableCell>
               <TableCell align="right">{row.comments}</TableCell>
               <TableCell align="right"><Button variant="outlined" onClick={ () => flagFeedback(row.id)}>Flag</Button></TableCell>
-              <TableCell align="right"><Button variant="outlined" onClick={ () => deleteFeedback(row.id)}>Delete</Button></TableCell>
+              <TableCell align="right"><Button variant="outlined" onClick={ () => handleClickOpen(row.id)}>Delete</Button></TableCell>
             </TableRow>
           ))
           }
@@ -93,6 +110,22 @@ function Admin( props ){
       </Table>
     </TableContainer>
 
+    <Dialog
+        open={open}
+        onClose={deleteFeedback, handleCloseDisagree}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to delete this feedback?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDisagree}>Don't Delete</Button>
+          <Button onClick={deleteFeedback} autoFocus>Delete</Button>
+        </DialogActions>
+      </Dialog>
 
                     </CardActions>
                 </Card>

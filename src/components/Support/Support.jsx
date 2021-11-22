@@ -14,8 +14,11 @@ function Support( props ){
     const handleInput = ()=>{ //input capture
         console.log( 'in handleInput:', event.target.value);
         setSupportInput( event.target.value );
-        if(supportInput != 0 ){
-          setLink( true )};
+        if( event.target.value > 0 && event.target.value < 6 ){
+          setLink( true )}
+          else {
+            setLink( false );
+          }
     }
 
     const handleCloseAgree = () => { //button click handler

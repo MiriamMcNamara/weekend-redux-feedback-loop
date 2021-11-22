@@ -38,7 +38,7 @@ router.delete('/:id', (req, res) => {
 
 //PUT route
 router.put( '/:id', ( req, res )=>{
-    console.log( 'PUT route hit', req.query );
+    console.log( 'PUT route hit');
     pool.query( 'UPDATE "feedback" SET flagged=true WHERE id=$1', [req.params.id]).then((results)=>{
         res.sendStatus( 200 );
     }).catch( (err)=>{
