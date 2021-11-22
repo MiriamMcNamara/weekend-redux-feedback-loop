@@ -42,6 +42,8 @@ function Review( props ){
                     <br />
                     </CardContent>
                     <CardActions style={{justifyContent: 'center'}}>
+                    <Button variant="outlined" size="large" color="secondary" style={{fontSize: 18}}>
+                    <Link to="/comments">PREVIOUS</Link></Button>
                     <Button variant="outlined" size="large" color="secondary" style={{fontSize: 18}} onClick={handlePost}>
                     <Link to="/thankyou">SUBMIT</Link></Button>
                     </CardActions>

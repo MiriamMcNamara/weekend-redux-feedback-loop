@@ -51,6 +51,8 @@ function Support( props ){
                 <TextField type="number" inputProps={{ min: "1", max: "5" }} onChange={(event ) =>handleInput ( event )}></TextField>
                 <br />
                 <br />
+                <Button variant="outlined" size="large" color="secondary" style={{fontSize: 18}}>
+                    <Link to="/understanding">PREVIOUS</Link></Button>
                 { link ?
                     <Button variant="outlined" size="large" color="secondary" style={{fontSize: 18}} onClick={handleCloseAgree}>
                     <Link to="/comments">NEXT</Link></Button>:

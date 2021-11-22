@@ -13,8 +13,12 @@ function Feeling( props ){
     const handleInput = ()=>{ //input capture
         console.log( 'in handleInput:', event.target.value);
         setFeelingInput( event.target.value );
-        if(feelingInput != 0 ){
-        setLink( true )};
+        console.log( 'feelingInput:', feelingInput );
+               if( event.target.value > 0 && event.target.value < 6 ){
+        setLink( true )}
+        else {
+          setLink( false );
+        }
     }
 
     const handleCloseAgree = () => { //button click handler

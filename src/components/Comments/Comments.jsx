@@ -38,6 +38,8 @@ function Comments( props ){
                 <TextField type="text" onChange={(event ) =>handleInput ( event )}></TextField>
                 <br />
                 <br />
+                <Button variant="outlined" size="large" color="secondary" style={{fontSize: 18}}>
+                    <Link to="/support">PREVIOUS</Link></Button>
                 <Button variant="outlined" size="large" color="secondary" style={{fontSize: 18}} onClick={handleCloseAgree}>
                 <Link to="/review">NEXT</Link></Button>
                 </CardActions>
