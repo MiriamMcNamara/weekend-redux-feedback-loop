@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
 //GET route
 router.get('/', (req, res) => {
     console.log('GET /feedback');
-    pool.query('SELECT * from "feedback";').then((result) => {
+    pool.query('SELECT * from "feedback" ORDER BY date DESC;').then((result) => {
         res.send(result.rows);
     }).catch((error) => {
         console.log('Error GET /feedback', error)
@@ -39,7 +39,7 @@ router.delete('/:id', (req, res) => {
 //PUT route
 router.put( '/:id', ( req, res )=>{
     console.log( 'PUT route hit', req.query );
-    pool.query( 'DELETE FROM "feedback" WHERE id=$1', [req.params.id]).then((results)=>{
+    pool.query( 'UPDATE "feedback" SET flagged=true WHERE id=$1', [req.params.id]).then((results)=>{
         res.sendStatus( 200 );
     }).catch( (err)=>{
         console.log( err );

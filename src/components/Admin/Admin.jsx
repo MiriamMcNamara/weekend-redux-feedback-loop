@@ -26,13 +26,26 @@ function Admin( props ){
         }) 
       } 
 
-      const deleteFeedback = ()=>{
-          console.log( 'in deleteFeedback', TableRow.id );
+      const deleteFeedback = (id) => {
+          console.log( 'in deleteFeedback', id );
+          axios.delete(`/feedback/${id}`).then ( ( response )=>{
+            getFeedback();
+          }).catch( ( err )=>{
+            console.log( err );
+          alert( 'problem!' );
+          })
       }
 
-      const flagFeedback = ()=>{
-          console.log( 'in flagFeedback' );
+      const flagFeedback = (id) => {
+          console.log( 'in flagFeedback', id );
+          axios.put(`/feedback/${id}`).then ( ( response )=>{
+            getFeedback();
+          }).catch( ( err )=>{
+            console.log( err );
+          alert( 'problem!' );
+          })
       }
+
 
     return(
 <Box sx={{boxShadow: 3}} m={2} pt={1} >
@@ -71,8 +84,8 @@ function Admin( props ){
               <TableCell align="right">{row.understanding}</TableCell>
               <TableCell align="right">{row.support}</TableCell>
               <TableCell align="right">{row.comments}</TableCell>
-              <TableCell align="right"><Button variant="outlined" onClick={flagFeedback}>Flag</Button></TableCell>
-              <TableCell align="right"><Button variant="outlined" onClick={deleteFeedback}>Delete</Button></TableCell>
+              <TableCell align="right"><Button variant="outlined" onClick={ () => flagFeedback(row.id)}>Flag</Button></TableCell>
+              <TableCell align="right"><Button variant="outlined" onClick={ () => deleteFeedback(row.id)}>Delete</Button></TableCell>
             </TableRow>
           ))
           }
