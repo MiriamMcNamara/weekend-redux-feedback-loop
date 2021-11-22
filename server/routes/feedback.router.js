@@ -15,6 +15,7 @@ router.post('/', (req, res) => {
     })
 }); // END POST Route
 
+//GET route
 router.get('/', (req, res) => {
     console.log('GET /feedback');
     pool.query('SELECT * from "feedback";').then((result) => {
@@ -23,6 +24,28 @@ router.get('/', (req, res) => {
         console.log('Error GET /feedback', error)
         res.sendStatus(500);
     });
-})
+}) // end GET route
+
+//DELETE route
+router.delete('/:id', (req, res) => {
+    pool.query('DELETE FROM "feedback" WHERE id=$1', [req.params.id]).then((result) => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log('Error DELETE /feedback', error);
+        res.sendStatus(500);
+    })
+}); //end DELETE route
+
+//PUT route
+router.put( '/:id', ( req, res )=>{
+    console.log( 'PUT route hit', req.query );
+    pool.query( 'DELETE FROM "feedback" WHERE id=$1', [req.params.id]).then((results)=>{
+        res.sendStatus( 200 );
+    }).catch( (err)=>{
+        console.log( err );
+        res.sendStatus( 500 );
+    }) 
+});
+
 
 module.exports = router;

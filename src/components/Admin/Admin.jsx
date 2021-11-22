@@ -26,6 +26,14 @@ function Admin( props ){
         }) 
       } 
 
+      const deleteFeedback = ()=>{
+          console.log( 'in deleteFeedback', TableRow.id );
+      }
+
+      const flagFeedback = ()=>{
+          console.log( 'in flagFeedback' );
+      }
+
     return(
 <Box sx={{boxShadow: 3}} m={2} pt={1} >
             <Grid container>
@@ -55,7 +63,7 @@ function Admin( props ){
         <TableBody>
           {feedback.map((row) => (
             <TableRow
-              key={feedback.id}
+              key={row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               {/* Table CELLS that contain our data (passed from orders to rows) */}
@@ -63,8 +71,8 @@ function Admin( props ){
               <TableCell align="right">{row.understanding}</TableCell>
               <TableCell align="right">{row.support}</TableCell>
               <TableCell align="right">{row.comments}</TableCell>
-              <TableCell align="right"><Button>Flag</Button></TableCell>
-              <TableCell align="right"><Button>Delete</Button></TableCell>
+              <TableCell align="right"><Button variant="outlined" onClick={flagFeedback}>Flag</Button></TableCell>
+              <TableCell align="right"><Button variant="outlined" onClick={deleteFeedback}>Delete</Button></TableCell>
             </TableRow>
           ))
           }
