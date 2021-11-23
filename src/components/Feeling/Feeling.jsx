@@ -8,14 +8,14 @@ function Feeling( props ){
     // const[ name, setName ]=useState( null );
     const dispatch = useDispatch();
 
-    const[ feelingInput, setFeelingInput ]=useState( 0 );
+    const[ feelingInput, setFeelingInput ]=useState( 0 ); //capture feedback input
 
     const handleInput = ()=>{ //input capture
         console.log( 'in handleInput:', event.target.value);
         setFeelingInput( event.target.value );
         console.log( 'feelingInput:', feelingInput );
                if( event.target.value > 0 && event.target.value < 6 ){
-        setLink( true )}
+        setLink( true )} //making sure input is between 1 and 5
         else {
           setLink( false );
         }
@@ -25,15 +25,15 @@ function Feeling( props ){
         console.log('in handleCloseAgree' );
         dispatch( { type: 'ADD_FEELING_FEEDBACK',  payload: feelingInput } ) }
 
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false); //dialog window
 
-    const [link, setLink] = useState(false);
+    const [link, setLink] = useState(false); //conren for button link
 
-    const handleClickOpen = () => {
+    const handleClickOpen = () => { //dialog window
       setOpen(true);
     };
   
-    const handleClose = () => {
+    const handleClose = () => { //dialog window
       setOpen(false);
     };
 

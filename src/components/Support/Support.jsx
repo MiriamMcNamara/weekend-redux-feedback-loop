@@ -9,13 +9,13 @@ function Support( props ){
 
     const dispatch = useDispatch();
 
-    const[ supportInput, setSupportInput ]=useState( 0 );
+    const[ supportInput, setSupportInput ]=useState( 0 ); //capture feedback input
 
     const handleInput = ()=>{ //input capture
         console.log( 'in handleInput:', event.target.value);
         setSupportInput( event.target.value );
-        if( event.target.value > 0 && event.target.value < 6 ){
-          setLink( true )}
+        if( event.target.value > 0 && event.target.value < 6 ){ //make sure feedback is
+          setLink( true )} //between 1 and 5
           else {
             setLink( false );
           }
@@ -25,15 +25,15 @@ function Support( props ){
         console.log('in handleCloseAgree' );
         dispatch( { type: 'ADD_SUPPORT_FEEDBACK',  payload: supportInput } ) }
 
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false); //dialog window
 
-    const [link, setLink] = useState(false);
+    const [link, setLink] = useState(false); //conren for button link
 
-    const handleClickOpen = () => {
+    const handleClickOpen = () => { //dialog window
       setOpen(true);
     };
   
-    const handleClose = () => {
+    const handleClose = () => { //dialog window
       setOpen(false);
     };
 

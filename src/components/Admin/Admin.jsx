@@ -11,13 +11,16 @@ function Admin( props ){
     const results = useSelector(store => store.results);
     // const[ name, setName ]=useState( null );
 
-     const[ feedback, setFeedback ]=useState( [] );
+     const[ feedback, setFeedback ]=useState( [] ); //needed a hook
+     //to capture the response.data from the GET
 
-     const [open, setOpen] = useState(false);
+     const [open, setOpen] = useState(false); //dialog window for delete
 
-     const [ rowId, setRowId] = useState( null );
+     const [ rowId, setRowId] = useState( null ); //needed a hook
+     //to capture the ID of the row for DELETE since the dialog window
+     //added a layer of removal from the table, if that makes sense?
  
-     const handleClickOpen = (id) => {
+     const handleClickOpen = (id) => { //needed to pass in ID of row to set the variable
         setRowId(id);
        setOpen(true);
        //this is the function that opens the confirmation dialogue on button click
@@ -28,11 +31,11 @@ function Admin( props ){
        //this closes it again if the user clicks "disagree"
      };
 
-    useEffect(()=>{ 
+    useEffect(()=>{ //axios GET when the page loads
         getFeedback();
       }, []);
 
-    const getFeedback = () => {
+    const getFeedback = () => { //gets the data from the database
         axios.get('/feedback').then ( ( response )=>{
           console.log( 'getFeedback:', response.data );
           setFeedback(response.data);
@@ -42,19 +45,19 @@ function Admin( props ){
         }) 
       } 
 
-      const deleteFeedback = () => {
-          console.log( 'in deleteFeedback', rowId );
+      const deleteFeedback = () => { //deletes the row once confirmed by user
+          console.log( 'in deleteFeedback', rowId ); //use the row ID
           axios.delete(`/feedback/${rowId}`).then ( ( response )=>{
-            getFeedback();
-            setOpen(false);
+            getFeedback(); //run the get call
+            setOpen(false); //close the dialog window
           }).catch( ( err )=>{
             console.log( err );
           alert( 'problem!' );
           })
       }
 
-      const flagFeedback = (id) => {
-          console.log( 'in flagFeedback', id );
+      const flagFeedback = (id) => { //pass ID of row into function
+          console.log( 'in flagFeedback', id ); //and use it to make PUT call
           axios.put(`/feedback/${id}`).then ( ( response )=>{
             getFeedback();
           }).catch( ( err )=>{

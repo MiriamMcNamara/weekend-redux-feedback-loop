@@ -8,7 +8,7 @@ function Comments( props ){
 
     const dispatch = useDispatch();
 
-    const[ commentInput, setCommentInput ]=useState( '' );
+    const[ commentInput, setCommentInput ]=useState( '' ); //capture input
 
     const handleInput = ()=>{ //input capture
         console.log( 'in handleInput:', event.target.value);

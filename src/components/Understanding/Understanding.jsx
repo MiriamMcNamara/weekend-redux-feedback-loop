@@ -8,7 +8,7 @@ function Understanding( props ){
     // const[ name, setName ]=useState( null );
     const dispatch = useDispatch();
 
-    const[ understandingInput, setUnderstandingInput ]=useState( 0 );
+    const[ understandingInput, setUnderstandingInput ]=useState( 0 ); //capture feedback input
 
     const handleInput = ()=>{ //input capture
         console.log( 'in handleInput:', event.target.value);
@@ -24,15 +24,15 @@ function Understanding( props ){
         console.log('in handleCloseAgree' );
         dispatch( { type: 'ADD_UNDERSTANDING_FEEDBACK',  payload: understandingInput } ) }
 
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false); //dialog window
 
-    const [link, setLink] = useState(false);
+    const [link, setLink] = useState(false); //conren for the button link
 
-    const handleClickOpen = () => {
+    const handleClickOpen = () => { //dialog window
       setOpen(true);
     };
   
-    const handleClose = () => {
+    const handleClose = () => { //dialog window
       setOpen(false);
     };
 

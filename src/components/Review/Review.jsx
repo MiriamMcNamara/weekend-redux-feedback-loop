@@ -10,7 +10,7 @@ function Review( props ){
     const dispatch = useDispatch();
     const feedback = useSelector(store => store.feedback);
 
-    const handlePost = () =>{
+    const handlePost = () =>{ //post to the database when submit button clicked
         console.log( 'in handlePost' );
         axios.post( `/feedback`, feedback ).then( (response)=>{
             //send a dispatch to empty out the store
